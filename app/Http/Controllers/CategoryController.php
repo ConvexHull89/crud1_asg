@@ -13,8 +13,7 @@ class CategoryController extends Controller
     }
 
     public function create(){
-        $products = Product::all();
-        return view('crecategory',compact('products'));
+        return view('crecategory');
     }
 
     public function destroy($id){
@@ -24,11 +23,9 @@ class CategoryController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'product_id' => 'required',
             'category_product' => 'required'
         ]);
         Category::create([
-            'product_id' => $request->product_id,
             'category_product' => $request->category_product
         ]);
         return redirect('/category');
@@ -41,7 +38,6 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id){
         Category::findorFail($id)->update([
-            'product_id' => $request->product_id,
             'category_product' => $request->category_product
         ]);
         return redirect('/category');

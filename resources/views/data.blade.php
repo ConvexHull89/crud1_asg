@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body style="background-image: linear-gradient(to left,#bfbfbf, #d9d9d9, #f2f2f2,#d9d9d9,#bfbfbf)">
+@if (\Session::has('error'))
+    <div class="alert alert-danger">
+        
+            {!! \Session::get('error') !!}
+    
+    </div>
+@endif
 <table class="table">
         <thead>
             <th>No</th>
             <th>Product's Code</th>
             <th>Product's Name</th>
+            <th>Product's Category</th>
             <th>Qty</th>
             <th>Price</th>
             <th>Description</th>
-            <th style="text-indent:150px">Action</th>
+            <th style="text-indent:110px">Action</th>
         </thead>
         <tbody>
         @foreach($products as $product)
@@ -24,6 +32,7 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$product->code}}</td>
                 <td>{{$product->nameproduct}}</td>
+                <td>{{$product->category->category_product}}</td>
                 <td>{{$product->qty}}</td>
                 <td>{{$product->price}}</td>
                 <td>{{$product->description}}</td>

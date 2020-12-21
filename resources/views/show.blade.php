@@ -7,19 +7,18 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body style="background-image: linear-gradient(to left, orange,yellow)">
+@if (\Session::has('error'))
+    <div class="alert alert-danger">
+        
+            {!! \Session::get('error') !!}
+    
+    </div>
+@endif
     <h1>Product's Code : {{$product->code}}</h1>
     <h1>Product's Name : {{$product->nameproduct}}</h1>
+    <h1>Product's Category : {{$product->category->category_product}}</h1>
     <h1>Product's Quantitiy : {{$product->qty}}</h1>
     <h1>Product's Price : {{$product->price}}</h1>
     <h1>Product's Desciption : {{$product->description}}</h1>
-    <h1>This Product Refers to Category :</h1>
-    <ul>
-        @foreach( $product->categories as $category)
-        <div class="d-flex justify-content-between mb-2">
-            <li><h3 class="">{{$category->category_product}}</h3></li>
-            <a href="{{route('cat.show', $category->id)}}" class="btn btn-success" style="width:22%; margin-right: 500px">See Detail</a>
-        </div>
-        @endforeach
-    </ul>
 </body>
 </html>

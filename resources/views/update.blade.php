@@ -8,6 +8,13 @@
 
 </head>
 <body style="background-image: linear-gradient(to right, #99bbff,indigo,violet)">
+@if (\Session::has('error'))
+    <div class="alert alert-danger">
+        
+            {!! \Session::get('error') !!}
+    
+    </div>
+@endif
     <div class="container">
     <h1 class="text-center text-white mt-3">Update Product Data</h1>
         <div class ="d-flex align-items-center justify-content-center " style="min-height: 80vh">
@@ -22,6 +29,15 @@
                 <div class="mb-3">
                     <label for="" class="form-label text-white">Product's Name</label>
                     <input class="form-control" name="nameproduct" type="text" placeholder="Enter Product's Name" value={{$product->nameproduct}}>
+                </div>
+                 <div class="mb-3">
+                    <label for="" class="form-label text-white">Product's Category</label>
+                    <select name="category_id" class="form-control" id="" placeholder="Select Category">
+                        @foreach($categories as $category)
+                            <option value="" selected disabled hidden>{{$product->category->category_product}}</option>
+                            <option value="{{$category->id}}">{{$category->category_product}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label text-white">Quantity of Product</label>
